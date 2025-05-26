@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dr.khalid Admin Panel</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link
+      href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css"
+      rel="stylesheet"
+    />
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  rel="stylesheet"
+/>
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>\
+    <script>
+  if (sessionStorage.getItem("isLoggedIn") !== "true") {
+    // Not logged in, redirect to login page
+    window.location.href = "signin.html";
+  }
+</script>
+
+    <div class="container-fluid position-relative bg-white d-flex p-0">
+      <!-- Spinner Start -->
+      <div
+        id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+      >
+        <div
+          class="spinner-border text-primary"
+          style="width: 3rem; height: 3rem"
+          role="status"
+        >
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <!-- Spinner End -->
+
+      <!-- Sidebar Start -->
+      <div class="sidebar pe-4 pb-3">
+        <nav class="navbar bg-light navbar-light">
+          <a href="index.html" class="navbar-brand mx-4 mb-3">
+            <h3 class="text-primary">Admin Panel</h3>
+          </a>
+          <div class="d-flex align-items-center ms-4 mb-4">
+            <div class="position-relative">
+              <img
+                class="rounded-circle"
+                src="img/user.jpg"
+                alt=""
+                style="width: 40px; height: 40px"
+              />
+              <div
+                class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"
+              ></div>
+            </div>
+            <div class="ms-3">
+              <h6 class="mb-0">Dr.Khalid</h6>
+              <span>Admin</span>
+            </div>
+          </div>
+          <div class="navbar-nav w-100">
+            <a href="index.html" class="nav-item nav-link active">
+              <i class="fa fa-tachometer-alt me-2"></i>Dashboard
+            </a>
+            <a href="gallery.html" class="nav-item nav-link">
+              <i class="fa fa-image me-2"></i>Gallery
+            </a>
+            <a href="blogs.html" class="nav-item nav-link">
+              <i class="fa fa-blog me-2"></i>Blogs
+            </a>
+            <a href="links.html" class="nav-item nav-link">
+              <i class="fab fa-youtube me-2"></i>YouTube Links
+            </a>
+            <a href="resume.html" class="nav-item nav-link">
+              <i class="fa fa-file-alt me-2"></i>Resume
+            </a>
+            <a href="books.html" class="nav-item nav-link">
+              <i class="fa fa-book me-2"></i>Books
+            </a>
+            <a href="articles.html" class="nav-item nav-link">
+              <i class="fa fa-newspaper me-2"></i>New Articles
+            </a>
+            <a href="certificates.html" class="nav-item nav-link">
+              <i class="fa fa-certificate me-2"></i>Certificates
+            </a>
+          <div style="display: flex; justify-content: center; margin-top: 20px;">
+  <button id="logoutBtn" 
+    style="
+      padding: 10px 24px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+      transition: background-color 0.3s ease;
+    "
+    onmouseover="this.style.backgroundColor='#0056b3'"
+    onmouseout="this.style.backgroundColor='#007bff'"
+  >
+    Logout
+  </button>
+</div>
+
+<script>
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    sessionStorage.removeItem('isLoggedIn');
+    window.location.href = 'signin.html';
+  });
+</script>
+
+
+          </div>
+          
+        </nav>
+      </div>
+      <!-- Sidebar End -->
+
+      <!-- Content Start -->
+      <div class="content">
+        <!-- Navbar Start -->
+        <nav
+          class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0"
+        >
+          <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+            <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+          </a>
+          <a href="#" class="sidebar-toggler flex-shrink-0">
+            <i class="fa fa-bars"></i>
+          </a>
+
+          <div class="navbar-nav align-items-center ms-auto">
+            <div class="nav-item dropdown"></div>
+
+            <div class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+              >
+                <img
+                  class="rounded-circle me-lg-2"
+                  src="img/user.jpg"
+                  alt=""
+                  style="width: 40px; height: 40px"
+                />
+                <span class="d-none d-lg-inline-flex">Dr.Khalid</span>
+              </a>
+            
+            </div>
+          </div>
+        </nav>
+        <!-- Navbar End -->
+
+        <!-- Sale & Revenue Start -->
+       <div class="container-fluid pt-4 px-4">
+  <div class="row g-4">
+    <div class="col-sm-6 col-xl-3">
+      <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+        <i class="fa fa-users fa-3x text-primary"></i>
+        <div class="ms-3">
+          <p class="mb-2">Daily Visitors</p>
+          <h6 class="mb-0 visitor-daily">0</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+      <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+        <i class="fa fa-calendar-alt fa-3x text-primary"></i>
+        <div class="ms-3">
+          <p class="mb-2">Monthly Visitors</p>
+          <h6 class="mb-0 visitor-monthly">0</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+      <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+        <i class="fa fa-globe fa-3x text-primary"></i>
+        <div class="ms-3">
+          <p class="mb-2">Total Visitors</p>
+          <h6 class="mb-0 visitor-total">0</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+      <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+        <i class="fa fa-flag fa-3x text-primary"></i>
+        <div class="ms-3">
+          <p class="mb-2">Countries</p>
+          <h6 class="mb-0 visitor-countries">0</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid pt-4 px-4">
+  <div class="row g-4">
+    <!-- Visitors by Country (Pie Chart) -->
+    <div class="col-sm-12 col-xl-6">
+      <div class="bg-light text-center rounded p-4 h-100">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+          <h6 class="mb-0">Visitors by Country</h6>
+          <a href="#">Show All</a>
+        </div>
+        <div style="max-width: 450px; margin: auto">
+          <canvas id="visitor-location-chart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Peak Visits by Day (Bar Chart) -->
+    <div class="col-sm-12 col-xl-6">
+      <div class="bg-light text-center rounded p-4 h-100">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+          <h6 class="mb-0">Most Active Days</h6>
+          <a href="#">Show All</a>
+        </div>
+        <canvas id="visitor-days-chart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  async function updateVisitorStats() {
+    try {
+      const res = await fetch("http://localhost:3000/api/track-visit", {
+        method: "POST",
+      });
+      const data = await res.json();
+      document.querySelectorAll('.visitor-daily').forEach(el => el.textContent = data.today);
+      document.querySelectorAll('.visitor-monthly').forEach(el => el.textContent = data.month);
+      document.querySelectorAll('.visitor-total').forEach(el => el.textContent = data.total);
+    } catch (error) {
+      console.error("Error fetching visitor stats:", error);
+    }
+  }
+
+  async function renderCountryChart() {
+    try {
+      const res = await fetch("http://localhost:3000/api/country-data");
+      const data = await res.json();
+
+      const ctx = document.getElementById("visitor-location-chart").getContext("2d");
+      new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: data.labels,
+          datasets: [{
+            data: data.values,
+            backgroundColor: [
+              "#0d6efd", "#198754", "#ffc107", "#dc3545", "#6610f2",
+              "#6f42c1", "#fd7e14", "#20c997", "#0dcaf0", "#adb5bd"
+            ],
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: "bottom",
+              labels: { font: { size: 12 } },
+            },
+          },
+        }
+      });
+
+      // Update countries count
+      document.querySelectorAll(".visitor-countries").forEach(el => el.textContent = data.labels.length);
+    } catch (err) {
+      console.error("Failed to load country chart", err);
+    }
+  }
+
+  async function renderDayChart() {
+    try {
+      const res = await fetch("http://localhost:3000/api/day-data");
+      const data = await res.json();
+
+      const ctx = document.getElementById("visitor-days-chart").getContext("2d");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: data.labels,
+          datasets: [{
+            label: "Visitors",
+            data: data.values,
+            backgroundColor: "#0d6efd",
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+            }
+          }
+        }
+      });
+    } catch (err) {
+      console.error("Failed to load day chart", err);
+    }
+  }
+
+  // Run everything on page load
+  updateVisitorStats();
+  renderCountryChart();
+  renderDayChart();
+</script>
+
+
+        <!-- Sales Chart End -->
+
+        <!-- Recent Sales Start -->
+        <div class="container-fluid pt-4 px-4">
+          <div class="bg-light text-center rounded p-4">
+        
+
+           <div class="d-flex justify-content-between align-items-center mb-3">
+  <h5 class="mb-0">Albums</h5>
+  <a href="gallery.html" class="btn btn-success btn-sm">+ Add New</a>
+          </div>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-hover align-middle mb-0">
+    <thead class="text-dark">
+      <tr>
+        <th style="white-space: nowrap;">#</th>
+        <th style="white-space: nowrap;">Thumbnail</th>
+        <th style="white-space: nowrap;">Album Name</th>
+        <th style="white-space: nowrap;">Total Images</th>
+        <th style="white-space: nowrap;">Action</th>
+      </tr>
+    </thead>
+    <tbody id="albumsTableBody">
+      <!-- Dynamic rows go here -->
+    </tbody>
+  </table>
+</div>
+
+<script>
+  const API_URL = "http://localhost:3000"; // Adjust if deployed
+  const albumsTableBody = document.getElementById("albumsTableBody");
+
+  async function loadAlbums() {
+    const res = await fetch(`${API_URL}/albums`);
+    const albums = await res.json();
+
+    albumsTableBody.innerHTML = albums
+      .map((album, index) => {
+        const totalImages = album.imageCount ?? 0;
+        return `
+        <tr>
+          <td>${index + 1}</td>
+          <td>
+            <img
+              src="${API_URL}/uploads/${album.thumbnail}"
+              alt="${album.name}"
+              class="img-fluid rounded"
+              style="width: 50px; height: 50px; object-fit: cover;"
+            />
+          </td>
+          <td class="text-truncate" style="max-width: 120px;">${album.name}</td>
+          <td>${totalImages}</td>
+          <td>
+            <a
+              href="album.html?album=${encodeURIComponent(album.name)}"
+              class="btn btn-sm btn-primary w-100"
+            >View</a>
+          </td>
+        </tr>`;
+      })
+      .join("");
+  }
+
+  loadAlbums();
+</script>
+
+
+          </div>
+        </div>
+
+        <!-- Recent Sales End -->
+
+        <!-- Widgets Start -->
+        <div class="container-fluid pt-4 px-4">
+          <div class="row g-4">
+        <div class="col-sm-12 col-md-6 col-xl-4">
+  <div class="h-100 bg-light rounded p-4">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+      <h6 class="mb-0">Calculator</h6>
+    </div>
+
+    <div class="calculator">
+      <input type="text" id="calcDisplay" class="form-control mb-3 text-end" readonly />
+
+      <div class="row g-2">
+  <div class="col-3"><button class="btn btn-light w-100 py-1" onclick="clearCalc()">C</button></div>
+  <div class="col-3"><button class="btn btn-light w-100 py-1" onclick="appendValue('(')">(</button></div>
+  <div class="col-3"><button class="btn btn-light w-100 py-1" onclick="appendValue(')')">)</button></div>
+  <div class="col-3"><button class="btn btn-primary w-100 py-1" onclick="appendValue('/')">÷</button></div>
+
+  <div class="col-3"><button class="btn btn-secondary w-100 py-1" onclick="appendValue('7')">7</button></div>
+  <div class="col-3"><button class="btn btn-secondary w-100 py-1" onclick="appendValue('8')">8</button></div>
+  <div class="col-3"><button class="btn btn-secondary w-100 py-1" onclick="appendValue('9')">9</button></div>
+  <div class="col-3"><button class="btn btn-primary w-100 py-1" onclick="appendValue('*')">×</button></div>
+
+  <div class="col-3"><button class="btn btn-secondary w-100 py-1" onclick="appendValue('4')">4</button></div>
+  <div class="col-3"><button class="btn btn-secondary w-100 py-1" onclick="appendValue('5')">5</button></div>
+  <div class="col-3"><button class="btn btn-secondary w-100 py-1" onclick="appendValue('6')">6</button></div>
+  <div class="col-3"><button class="btn btn-primary w-100 py-1" onclick="appendValue('-')">−</button></div>
+
+  <div class="col-3"><button class="btn btn-secondary w-100 py-1" onclick="appendValue('1')">1</button></div>
+  <div class="col-3"><button class="btn btn-secondary w-100 py-1" onclick="appendValue('2')">2</button></div>
+  <div class="col-3"><button class="btn btn-secondary w-100 py-1" onclick="appendValue('3')">3</button></div>
+  <div class="col-3"><button class="btn btn-primary w-100 py-1" onclick="appendValue('+')">+</button></div>
+
+  <div class="col-3"><button class="btn btn-secondary w-100 py-1" onclick="appendValue('0')">0</button></div>
+  <div class="col-3"><button class="btn btn-secondary w-100 py-1" onclick="appendValue('.')">.</button></div>
+  <div class="col-6"><button class="btn btn-dark w-100 py-1" onclick="calculateResult()">=</button></div>
+</div>
+
+    </div>
+  </div>
+</div>
+<script>
+  function appendValue(value) {
+    document.getElementById('calcDisplay').value += value;
+  }
+
+  function clearCalc() {
+    document.getElementById('calcDisplay').value = '';
+  }
+
+  function calculateResult() {
+    try {
+      const result = eval(document.getElementById('calcDisplay').value);
+      document.getElementById('calcDisplay').value = result;
+    } catch (e) {
+      document.getElementById('calcDisplay').value = 'Error';
+    }
+  }
+</script>
+
+
+            <div class="col-sm-12 col-md-6 col-xl-4">
+              <div class="h-100 bg-light rounded p-4">
+                <div
+                  class="d-flex align-items-center justify-content-between mb-4"
+                >
+                  <h6 class="mb-0">Calender</h6>
+                </div>
+                <div id="calender"></div>
+              </div>
+            </div>
+
+           <div class="col-12 col-md-6 col-xl-4">
+  <div class="h-100 bg-light rounded p-4 d-flex align-items-center justify-content-center">
+    <div class="digital-clock-container">
+      <div id="digitalClock" class="digital-clock">12:00:00 AM</div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .digital-clock-container {
+    width: 100%;
+    max-width: 260px;
+    padding: 20px 10px;
+    border-radius: 20px;
+    background: #f0f4ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    user-select: none;
+    margin: 0 auto;
+  }
+
+  .digital-clock {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 3rem;
+    color: #0d6efd;
+    letter-spacing: 2px;
+    font-weight: 900;
+    text-shadow: none;
+    white-space: nowrap;
+    overflow: visible; /* changed */
+    text-overflow: clip; /* changed */
+  }
+
+  /* Smaller font on small screens */
+  @media (max-width: 576px) {
+    .digital-clock-container {
+      max-width: 100%;
+      padding: 15px 10px;
+      background: #f8fbff;
+    }
+    .digital-clock {
+      font-size: 2.5rem;  /* smaller */
+      letter-spacing: 2.5px;
+      overflow: visible;
+      text-overflow: clip;
+    }
+  }
+</style>
+
+<script>
+  function updateDigitalClock() {
+    const clock = document.getElementById('digitalClock');
+    const now = new Date();
+
+    let hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+
+    clock.textContent = `${hours.toString().padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
+  }
+
+  setInterval(updateDigitalClock, 1000);
+  updateDigitalClock();
+</script>
+
+
+          </div>
+        </div>
+        <!-- Widgets End -->
+
+        <!-- Footer Start -->
+        <div class="container-fluid pt-4 px-4">
+          <div class="bg-light rounded-top p-4">
+            <div class="row">
+              <div class="col-12 col-sm-6 text-center text-sm-start">
+                &copy; <a href="#">Dr.khalid</a>, All Right Reserved.
+              </div>
+              <div class="col-12 col-sm-6 text-center text-sm-end">
+                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                Designed By <a href="https://magarits.com">MagarITs</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Footer End -->
+      </div>
+      <!-- Content End -->
+       
+
+      <!-- Back to Top -->
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
+        ><i class="bi bi-arrow-up"></i
+      ></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/chart/chart.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
